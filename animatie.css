@@ -1,0 +1,94 @@
+html {
+  --background: rgb(5, 2, 16);
+  --color1: rgb(251, 93, 173);
+  --color2: rgb(85, 251, 159);
+  --color3: rgb(185, 122, 255);
+  --color4: rgb(21, 10, 45);
+
+  background-color: var(--background);
+}
+
+#animation-container {
+  margin: 50px;
+}
+
+#circle-blur,
+#circle-cover {
+  border-radius: 50%;
+  background: linear-gradient(var(--color1), var(--color2), var(--color3));
+  transform-origin: center;
+}
+
+#circle-blur {
+  height: 420px;
+  width: 420px;
+  filter: blur(30px);
+  z-index: 0;
+  position: relative;
+}
+
+#circle-cover {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  top: -400px;
+  left: 10px;
+  filter: blur(-300px);
+  z-index: 0;
+  transform: translateZ(1000px);
+}
+
+#circle {
+  border-radius: 50%;
+  height: 360px;
+  width: 360px;
+  transform-origin: center;
+  background: var(--background);
+  position: relative;
+  top: -780px;
+  left: 30px;
+}
+
+#circle::after {
+  position: absolute;
+  content: '';
+  border-radius: 50%;
+  height: 360px;
+  width: 360px;
+  transform: scale(1);
+  background: var(--color4);
+
+  animation: pulse 1s linear 0s infinite backwards;
+}
+
+.rotate {
+  animation-name: rotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: backwards;
+  animation-timing-function: linear;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.1);
+  }
+
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  99% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transition: rotate(0deg);
+  }
+}
